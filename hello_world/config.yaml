@@ -9,3 +9,7 @@ arch:
   - armhf
   - armv7
   - i386
+options:
+  message: "howdy cowboy"
+schema:
+  message: str
