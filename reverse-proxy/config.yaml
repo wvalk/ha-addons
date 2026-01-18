@@ -4,7 +4,6 @@ slug: reverse_proxy
 description: Simple reverse proxy written in Go with configurable target URL
 arch:
   - amd64
-  - arm64
 startup: application
 boot: auto
 options:
