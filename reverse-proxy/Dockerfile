@@ -1,6 +1,5 @@
 # First line: Home Assistant add-on base injected by Supervisor
-ARG BUILD_FROM
-FROM $BUILD_FROM
+FROM ghcr.io/home-assistant/amd64-addon-base:13.2.0
 
 # Install Go compiler for building the binary
 RUN apk add --no-cache go build-base git
