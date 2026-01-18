@@ -2,4 +2,4 @@
 
 echo "Hello world!"
 
-echo "printing message from config: "; cat config.json | jq '.message' 
+echo "printing message from config: "; cat /data/config.json | jq '.message' 
