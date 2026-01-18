@@ -1,22 +1,24 @@
-# First line: Home Assistant add-on base injected by Supervisor
-FROM ghcr.io/home-assistant/amd64-addon-base:13.2.0
+# Home Assistant Supervisor injects this automatically
+ARG BUILD_FROM
+FROM $BUILD_FROM
 
-# Install Go compiler for building the binary
-RUN apk add --no-cache go build-base git
+# Install dependencies: Go, compiler tools, Bash, Curl
+RUN apk add --no-cache go git build-base bash curl
 
-# Set working directory
-WORKDIR /app
+# Install Bashio manually (Supervisor's BUILD_FROM does NOT include it)
+RUN mkdir -p /usr/lib/bashio \
+    && curl -sSL https://raw.githubusercontent.com/hassio-addons/bashio/main/lib/bashio.sh -o /usr/lib/bashio/bashio.sh
 
-# Copy Go source code
-COPY src/ ./src/
+ENV BASHIO_LIB=/usr/lib/bashio
+
+# Build Go application
 WORKDIR /app/src
-
-# Build Go binary
+COPY src/ ./
 RUN go build -o /app/reverse-proxy main.go
 
-# Copy run.sh
+# Install run.sh
 COPY run.sh /app/run.sh
 RUN chmod +x /app/run.sh /app/reverse-proxy
 
-# Start the add-on
+WORKDIR /app
 CMD ["/app/run.sh"]
