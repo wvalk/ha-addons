@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-source /usr/lib/bashio/bashio.sh
-
+#!/usr/bin/with-contenv bashio
 TARGET_URL=$(bashio::config 'target_url')
 bashio::log.info "Reverse proxy starting with target URL: ${TARGET_URL}"
 
