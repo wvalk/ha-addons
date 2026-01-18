@@ -1,6 +1,6 @@
-name: Reverse Proxy
+name: Reverse Proxy 2
 version: "1.0.1"
-slug: reverse_proxy
+slug: reverse_proxy_2
 description: Simple reverse proxy written in Go with configurable target URL
 arch:
   - amd64
