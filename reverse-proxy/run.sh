@@ -1,14 +1,8 @@
 #!/usr/bin/env bash
-set -e
+source /usr/lib/bashio/bashio.sh
 
-TARGET_URL="$(bashio::config 'target_url')"
-
-if [ -z "$TARGET_URL" ]; then
-    echo "Error: target_url is not set"
-    exit 1
-fi
+TARGET_URL=$(bashio::config 'target_url')
+bashio::log.info "Starting reverse proxy with target URL: ${TARGET_URL}"
 
 export TARGET_URL
-
-echo "Starting reverse proxy with target: $TARGET_URL"
-/app/reverse-proxy
+exec /app/reverse-proxy
