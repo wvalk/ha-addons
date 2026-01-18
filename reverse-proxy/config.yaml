@@ -1,5 +1,5 @@
 name: Reverse Proxy
-version: "1.0.0"
+version: "1.0.1"
 slug: reverse_proxy
 description: Simple reverse proxy written in Go with configurable target URL
 arch:
