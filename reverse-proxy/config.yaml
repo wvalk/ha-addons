@@ -10,8 +10,6 @@ options:
   target_url: "http://example.com"
 schema:
   target_url: str
-ports:
-  8080/tcp: 8080
 ingress: true
 ingress_port: 8080
 panel_icon: mdi:proxy
