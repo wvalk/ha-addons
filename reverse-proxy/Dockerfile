@@ -1,26 +1,23 @@
-# Step 1: Define runtime base image (must be first line in HA add-ons)
+# First line: Home Assistant add-on base injected by Supervisor
 ARG BUILD_FROM
-FROM $BUILD_FROM AS runtime
+FROM $BUILD_FROM
 
-# Step 2: Runtime dependencies (already has bash and bashio in HA base)
+# Install Go compiler for building the binary
+RUN apk add --no-cache go build-base git
+
+# Set working directory
 WORKDIR /app
 
-# Step 3: Build Go binary in a separate builder stage
-FROM golang:1.22-alpine AS builder
-
-WORKDIR /app
-ENV GO111MODULE=on
-
+# Copy Go source code
 COPY src/ ./src/
 WORKDIR /app/src
 
+# Build Go binary
 RUN go build -o /app/reverse-proxy main.go
 
-# Step 4: Copy Go binary and run.sh into runtime container
-COPY --from=builder /app/reverse-proxy /app/reverse-proxy
+# Copy run.sh
 COPY run.sh /app/run.sh
+RUN chmod +x /app/run.sh /app/reverse-proxy
 
-RUN chmod +x /app/reverse-proxy /app/run.sh
-
-# Step 5: Start the application
+# Start the add-on
 CMD ["/app/run.sh"]
