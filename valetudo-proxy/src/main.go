@@ -9,9 +9,9 @@ import (
 )
 
 func main() {
-	targetURL := os.Getenv("TARGET_URL")
+	targetURL := os.Getenv("URL")
 	if targetURL == "" {
-		log.Fatalf("TARGET_URL not set")
+		log.Fatalf("URL not set")
 	}
 
 	target, err := url.Parse(targetURL)
@@ -26,9 +26,9 @@ func main() {
 		proxy.ServeHTTP(w, r)
 	})
 
-	server := &http.Server{Addr: ":8080"}
+	server := &http.Server{Addr: ":8099"}
 
-	log.Println("Reverse proxy running on :8080 →", targetURL)
+	log.Println("Reverse proxy running on :8099 →", targetURL)
 	if err := server.ListenAndServe(); err != nil {
 		log.Fatalf("Server error: %v", err)
 	}

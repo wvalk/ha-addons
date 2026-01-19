@@ -1,0 +1,11 @@
+#!/usr/bin/with-contenv bashio
+# vim: ft=bash
+# shellcheck shell=bash
+
+# Run dnsmasq
+URL=$(bashio::config 'url')
+bashio::log.info "Valetudo proxy starting with target URL: ${URL}"
+
+export URL
+
+exec /usr/local/bin/valetudo-proxy

@@ -1,0 +1,17 @@
+name: "Valetudo Proxy"
+description: "Proxy Plugin to manage valetudo"
+version: "0.1.0"
+slug: "valetudo_proxy"
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+options:
+  url: ""
+schema:
+  url: str
+ingress: true
+panel_icon: mdi:robot-vacuum
