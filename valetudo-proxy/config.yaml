@@ -11,7 +11,13 @@ arch:
   - i386
 options:
   url: ""
+  basic_auth: false
+  username: ""
+  password: ""
 schema:
   url: str
+  basic_auth: bool
+  username: str
+  password: password
 ingress: true
 panel_icon: mdi:robot-vacuum

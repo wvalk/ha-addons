@@ -2,10 +2,13 @@
 # vim: ft=bash
 # shellcheck shell=bash
 
-# Run dnsmasq
+# Run valetudo_proxy
 URL=$(bashio::config 'url')
 bashio::log.info "Valetudo proxy starting with target URL: ${URL}"
+BASIC_AUTH=$(bashio::config 'basic_auth')
+USERNAME=$(bashio::config 'username')
+PASSWORD=$(bashio::config 'password')
 
-export URL
+export URL BASIC_AUTH USERNAME PASSWORD
 
 exec /usr/local/bin/valetudo-proxy
