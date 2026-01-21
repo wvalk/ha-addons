@@ -24,7 +24,14 @@ func main() {
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
         // Add Basic Authentication header if requested
         if os.Getenv("basic_auth") == "true" {
-            r.Header.Add("Authorization", "Basic "+base64.StdEncoding.EncodeToString([]byte(os.Getenv("username") + ":" + os.Getenv("password")))
+            r.Header.Add(
+                "Authorization", 
+                "Basic "+base64.StdEncoding.EncodeToString(
+                    []byte(
+                        os.Getenv("username") + ":" + os.Getenv("password")
+                    )
+                )
+            )
         }
 
         r.Host = target.Host
