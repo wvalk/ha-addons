@@ -9,6 +9,9 @@ BASIC_AUTH=$(bashio::config 'basic_auth')
 USERNAME=$(bashio::config 'username')
 PASSWORD=$(bashio::config 'password')
 
-export URL BASIC_AUTH USERNAME PASSWORD
+export URL 
+export BASIC_AUTH 
+export USERNAME 
+export PASSWORD
 
 exec /usr/local/bin/valetudo-proxy
