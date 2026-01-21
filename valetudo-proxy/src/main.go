@@ -26,10 +26,10 @@ Basic_auth: %s
 Username: %s
 Password: %t`,
 		targetURL,
-		os.Getenv("basic_auth"),
-		os.Getenv("username"),
+		os.Getenv("BASIC_AUTH"),
+		os.Getenv("USERNAME"),
 		func() bool {
-			return len(os.Getenv("password")) > 0
+			return len(os.Getenv("PASSWORD")) > 0
 		}(),
 	)
 
@@ -37,11 +37,11 @@ Password: %t`,
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		// Add Basic Authentication header if requested
-		if os.Getenv("basic_auth") == "true" {
+		if os.Getenv("BASIC_AUTH") == "true" {
 			r.Header.Add(
 				"Authorization",
 				"Basic "+base64.StdEncoding.EncodeToString(
-					[]byte(os.Getenv("username")+":"+os.Getenv("password")),
+					[]byte(os.Getenv("USERNAME")+":"+os.Getenv("PASSWORD")),
 				),
 			)
 		}
